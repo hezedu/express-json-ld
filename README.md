@@ -15,7 +15,7 @@ JSONLD({
 使用：
 ```js
 app.get('/', function(req ,res, next){
-  res.jsonLD([{
+  res.JSONLD([{
     name: 'JSON-LD',
     '@type': 'hahaha'
   },

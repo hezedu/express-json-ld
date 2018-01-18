@@ -8,7 +8,7 @@ JSONLD({
   indexPath: path.join(__dirname, 'public/index.html')
 })
 app.get('/', function(req ,res, next){
-  res.jsonLD([{
+  res.JSONLD([{
     name: 'JSON-LD',
     '@type': 'hahaha'
   },

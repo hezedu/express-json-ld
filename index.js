@@ -54,8 +54,7 @@ module.exports = function(config){
   const tpl = fs.readFileSync(config.indexPath, 'utf-8');
   const render = getTplRender(tpl);
   const indent = '\n' + render.indent;
-  console.log('indent', indent.length)
-  config.app.response.__proto__.jsonLD = function(data){
+  config.app.response.__proto__.JSONLD = function(data){
     if(!Array.isArray(data)){
       data = [data];
     }
