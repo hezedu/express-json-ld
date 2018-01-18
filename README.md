@@ -1,7 +1,7 @@
 # express-json-ld
 非中间件
 ## 使用方法
-安装：
+#### 安装：
 ```js
 var express = require('express');
 var app = express();
@@ -12,7 +12,7 @@ JSONLD({
   indexPath: path.join(__dirname, 'public/index.html')
 })
 ```
-使用：
+#### 使用：
 ```js
 app.get('/', function(req ,res, next){
   res.JSONLD([{
@@ -25,10 +25,9 @@ app.get('/', function(req ,res, next){
   }])
 })
 ```
-模版：
+#### 模版：
 
-使用`<!--JSON-LD-PLACEHOLDER-->`占位符代表JSON-LD输出位置。
-
+使用`<!--JSON-LD-PLACEHOLDER-->`占位符代表JSON-LD输出位置。<br>
 使用`<!--JSON-LD-TITLE-->`占位符代表根据JSON-LD生成的Title位置。
 ```html
 <!DOCTYPE html>
