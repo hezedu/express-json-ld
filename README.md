@@ -27,8 +27,8 @@ app.get('/', function(req ,res, next){
 ```
 #### 模版：
 
-使用`<!--JSON-LD-PLACEHOLDER-->`占位符代表JSON-LD输出位置。<br>
-使用`<!--JSON-LD-TITLE-->`占位符代表根据JSON-LD生成的Title位置。
+使用 `<!--JSON-LD-PLACEHOLDER-->` 占位符代表JSON-LD输出位置。<br>
+使用 `<!--JSON-LD-TITLE-->` 占位符代表根据JSON-LD生成的Title位置。
 ```html
 <!DOCTYPE html>
 <html>
