@@ -1,0 +1,28 @@
+{
+  "name": "express-json-ld",
+  "version": "0.0.1",
+  "main": "index.js",
+  "description": "",
+  "keywords": [
+    "json-ld",
+    "JSON-LD",
+    "JSON",
+    "LD",
+    "express"
+  ],
+  "files": ["index.js"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hezedu/express-json-ld.git"
+  },
+  "author": {
+    "name": "hezedu"
+  },
+  "dependencies": {
+  },
+  "license": "MIT",
+  "email": "hezedu@hotmail.com",
+  "bugs": {
+    "url": "https://github.com/hezedu/express-json-ld/issues"
+  }
+}
