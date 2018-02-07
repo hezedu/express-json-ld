@@ -1,16 +1,17 @@
 const fs = require('fs');
+var indexPath;
 
 function getTplRender(tpl){
   const PLACEHOLDER = '<!--JSON-LD-PLACEHOLDER-->';
   const TITLE = '<!--JSON-LD-TITLE-->';
   var placeholderIndex = tpl.indexOf(PLACEHOLDER);
   if(placeholderIndex === -1){
-    throw new Error(`express-json-ld: ${config.indexPath} unhave "${PLACEHOLDER}"`);
+    throw new Error(`express-json-ld: ${indexPath} unhave "${PLACEHOLDER}"`);
   }
   
   var titleIndex = tpl.indexOf(TITLE);
   if(titleIndex === -1){
-    throw new Error(`express-json-ld: ${config.indexPath} unhave "${TITLE}"`);
+    throw new Error(`express-json-ld: ${indexPath} unhave "${TITLE}"`);
   }
   var indent = tpl.lastIndexOf('\n', placeholderIndex);
   indent = placeholderIndex - indent;
@@ -50,11 +51,15 @@ function jsonLDWrap(obj){
   return `<script type="application/ld+json" id="json-ld-${obj['@type']}">${JSON.stringify(obj)}</script>`
 }
 
-module.exports = function(config){
-  const tpl = fs.readFileSync(config.indexPath, 'utf-8');
+exports.install = function(app, _indexPath){
+  if(indexPath) {
+    throw new Error('JSONLD Already Installed');
+  }
+  indexPath = _indexPath;
+  const tpl = fs.readFileSync(indexPath, 'utf-8');
   const render = getTplRender(tpl);
   const indent = '\n' + render.indent;
-  config.app.response.__proto__.JSONLD = function(data){
+  app.response.__proto__.JSONLD = function(data){
     if(!Array.isArray(data)){
       data = [data];
     }
