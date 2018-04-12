@@ -51,15 +51,15 @@ function jsonLDWrap(obj){
   return `<script type="application/ld+json" id="json-ld-${obj['@type']}">${JSON.stringify(obj)}</script>`
 }
 
-exports.install = function(app, _indexPath){
+module.exports = function(config){
   if(indexPath) {
     throw new Error('JSONLD Already Installed');
   }
-  indexPath = _indexPath;
+  indexPath = config.indexPath;
   const tpl = fs.readFileSync(indexPath, 'utf-8');
   const render = getTplRender(tpl);
   const indent = '\n' + render.indent;
-  app.response.__proto__.JSONLD = function(data){
+  config.app.response.__proto__.JSONLD = function(data){
     if(!Array.isArray(data)){
       data = [data];
     }
