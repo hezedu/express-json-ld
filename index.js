@@ -51,14 +51,29 @@ function jsonLDWrap(obj){
   return `<script type="application/ld+json" id="json-ld-${obj['@type']}">${JSON.stringify(obj)}</script>`
 }
 
+function _initRender(indexPath) {
+  const tpl = fs.readFileSync(indexPath, 'utf-8');
+  return getTplRender(tpl);
+}
+
 module.exports = function(config){
   if(indexPath) {
     throw new Error('JSONLD Already Installed');
   }
   indexPath = config.indexPath;
-  const tpl = fs.readFileSync(indexPath, 'utf-8');
-  const render = getTplRender(tpl);
-  const indent = '\n' + render.indent;
+  const watch = config.watch === undefined ? true : config.watch;
+
+
+  let render = _initRender(indexPath);
+  let indent = '\n' + render.indent;
+
+  if(watch) {
+    fs.watchFile(indexPath, () => {
+      render = _initRender(indexPath);
+      indent = '\n' + render.indent;
+    })
+  }
+
   config.app.response.__proto__.JSONLD = function(data){
     if(!Array.isArray(data)){
       data = [data];
